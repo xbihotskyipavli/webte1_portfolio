@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Profil | Serhii Bihotskyi</title>
+  <meta name="description" content="Full stack softvérový inžinier. Vývoj softvérových aplikácií a REST API.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Profil | Serhii Bihotskyi">
+  <meta property="og:description" content="Full stack softvérový inžinier. Vývoj softvérových aplikácií a REST API.">
+  <meta property="og:image" content="img/og-cover.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <svg class="brand__logo" viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Monogram SB">
+          <rect class="brand__logo-bg" width="64" height="64" rx="14"/>
+          <text class="brand__logo-text" x="32" y="33" text-anchor="middle" dominant-baseline="central">SB</text>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__name">Serhii Bihotskyi</span>
+          <span class="brand__tagline">Softvérový inžinier a študent IT</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Hlavná navigácia">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list">Menu</button>
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link nav__link--active" href="index.html" aria-current="page">Profil</a></li>
+          <li><a class="nav__link" href="pages/cv.html">Životopis</a></li>
+          <li><a class="nav__link" href="pages/workspace.html">Moje pracovné prostredie</a></li>
+          <li><a class="nav__link" href="pages/schedule.html">Rozvrh</a></li>
+          <li><a class="nav__link" href="pages/map.html">Kde ma nájdete</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <h1 class="hero__title">Ahoj, som Serhii.</h1>
+      <p class="hero__lede"><mark class="hero__mark">Full stack softvérový inžinier</mark> a študent 3. ročníka na STU FEI.</p>
+    </section>
+
+    <section class="about">
+      <h2 class="section-title">O mne</h2>
+      <img class="about__photo" src="img/me.jpg" alt="Portrét: Serhii Bihotskyi" width="600" height="750" loading="lazy">
+      <p>Študujem aplikovanú informatiku na Fakulte elektrotechniky a informatiky STU v Bratislave (3. ročník). Venujem sa full-stack vývoju softvéru — od návrhu databázovej architektúry a serverovej logiky až po tvorbu intuitívneho používateľského rozhrania.</p>
+      <p>Špecializujem sa na návrh a vývoj robustných REST API a aplikácií s dôrazom na čistý, efektívny a ľahko udržiavateľný kód. Mojím cieľom je neustále sa posúvať ako Full-Stack Engineer a podieľať sa na vývoji systémov, ktoré prinášajú reálnu hodnotu.</p>
+      <a class="btn" href="pages/cv.html">Pozrieť životopis</a>
+    </section>
+
+    <section class="focus">
+      <h2 class="section-title">Tri kľúčové veci</h2>
+      <ul class="focus__list">
+        <li class="focus__item">Študent STU FEI, 3. ročník</li>
+        <li class="focus__item">Full stack softvérový inžinier</li>
+        <li class="focus__item">Vývoj softvérových aplikácií, REST API, návrh čistého a efektívneho kódu</li>
+      </ul>
+    </section>
+
+    <aside class="quote" aria-label="Motto">
+      <blockquote class="quote__body">
+        <p class="quote__text">"Najväčším rizikom je neriskovať vôbec. V rýchlo sa meniacom svete je jedinou stratégiou, ktorá zaručene zlyhá, neriskovať.“</p>
+        <footer class="quote__author">
+            - <cite>Jeff Bezos (founder of Amazon)</cite>
+        </footer>
+      </blockquote>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <address class="site-footer__contact">
+        <strong>Serhii Bihotskyi</strong><br>
+        Full-stack softvérový inžinier<br>
+        <a href="mailto:serhii.bihotskyi@example.com">sbihotskyi@gmail.com</a><br>
+        <a href="tel:+421900123456">+421 900 123 456</a>
+      </address>
+      <p class="site-footer__sources">
+        &copy; 2026 Serhii Bihotskyi<br>
+        Zdroje:
+        <a href="https://github.com/Outfitio/Outfit-Fonts">písmo Outfit (SIL OFL 1.1)</a>,
+        <a href="https://www.openstreetmap.org/copyright">mapové podklady &copy; prispievatelia OpenStreetMap</a>,
+        <a href="https://leafletjs.com/">knižnica Leaflet</a>,
+        fotografia: vlastná
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
