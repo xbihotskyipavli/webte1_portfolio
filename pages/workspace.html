@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Záľuby a hackathon | Serhii Bihotskyi</title>
+  <meta name="description" content="Takto pracujem v tíme: fotografia z študentského hackathonu s interaktívnymi bodmi o mojom počítači, kamarátoch a atmosfére súťaže.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Záľuby a hackathon | Serhii Bihotskyi">
+  <meta property="og:description" content="Takto pracujem v tíme: fotografia z študentského hackathonu s interaktívnymi bodmi.">
+  <meta property="og:image" content="../img/og-cover.png">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <svg class="brand__logo" viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Monogram SB">
+          <rect class="brand__logo-bg" width="64" height="64" rx="14"/>
+          <text class="brand__logo-text" x="32" y="33" text-anchor="middle" dominant-baseline="central">SB</text>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__name">Serhii Bihotskyi</span>
+          <span class="brand__tagline">Softvérový inžinier a študent IT</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Hlavná navigácia">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list">Menu</button>
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="../index.html">Profil</a></li>
+          <li><a class="nav__link" href="cv.html">Životopis</a></li>
+          <li><a class="nav__link nav__link--active" href="workspace.html" aria-current="page">Moje pracovné prostredie</a></li>
+          <li><a class="nav__link" href="schedule.html">Rozvrh</a></li>
+          <li><a class="nav__link" href="map.html">Kde ma nájdete</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <h1 class="hero__title">Takto pracujem.</h1>
+      <p class="hero__lede">Najlepšie mi ide práca v tíme pod časovým tlakom. Na <mark class="hero__mark">študentskom hackathone</mark> sme za 24 hodín postavili funkčný prototyp webovej aplikácie.</p>
+    </section>
+
+    <section class="workspace">
+      <h2 class="section-title">Náš tím na Hackatone</h2>
+
+      <figure class="workspace__figure">
+        <div class="workspace__stage">
+          <img class="workspace__img" src="../img/workspace.jpg" alt="Ja a moji dvaja kamaráti Zakhar a Oleh sedíme spolu pri stole na hackathone, na stole máme notebooky a občerstvenie" width="1600" height="1067">
+          <div class="workspace__overlay" data-hotspot-overlay></div>
+          <div class="workspace__hint-container">
+            <p class="workspace__hint">Prejdi myšou alebo ťukni na označené miesto na fotke.</p>
+          </div>
+        </div>
+        <figcaption class="workspace__caption">Študentský hackathon v Bratislave, november 2025. Fotografia: vlastná.</figcaption>
+      </figure>
+
+      <noscript>
+        <p class="workspace__noscript">Interaktívne body na fotke potrebujú JavaScript. Na fotke som ja s kamarátmi Zakharom a Olehom pri stole na hackathone.</p>
+      </noscript>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <address class="site-footer__contact">
+        <strong>Serhii Bihotskyi</strong><br>
+        Full-stack softvérový inžinier<br>
+        <a href="mailto:sbihotskyi@gmail.com">sbihotskyi@gmail.com</a><br>
+        <a href="tel:+421900123456">+421 900 123 456</a>
+      </address>
+      <p class="site-footer__sources">
+        &copy; 2026 Serhii Bihotskyi<br>
+        Zdroje:
+        <a href="https://github.com/Outfitio/Outfit-Fonts">písmo Outfit (SIL OFL 1.1)</a>,
+        <a href="https://www.openstreetmap.org/copyright">mapové podklady &copy; prispievatelia OpenStreetMap</a>,
+        <a href="https://leafletjs.com/">knižnica Leaflet</a>,
+        fotografia: vlastná
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

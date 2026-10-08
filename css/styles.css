@@ -328,3 +328,197 @@ button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+
+/* ===== Workspace page ===== */
+
+.workspace {
+  padding: 0 0 var(--space-xl);
+  overflow-x: clip;
+}
+
+.workspace__figure { 
+  margin: 0;
+}
+
+.workspace__caption {
+  padding-top: var(--space);
+  font-size: 1rem;
+}
+
+.workspace__noscript { 
+  margin: var(--space) 0 0;
+}
+
+/* Stage: image plus overlay, all hotspot positions are percentages of this box */
+.workspace__stage {
+  --panel-height: 11rem;
+  --panel-width: 20rem;
+  --panel-gap: calc(var(--space) * 0.5);
+  position: relative;
+}
+.workspace__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border-width) solid var(--color-text);
+}
+.workspace__overlay { position: absolute; inset: 0; }
+
+/* Hotspot: --x and --y are the top left corner, --w and --h the size (all in percent) */
+.hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--space-lg);
+  height: var(--space-lg);
+}
+.hotspot__btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: var(--border-width) solid var(--color-bg);
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.hotspot__btn:hover,
+.hotspot:focus-within .hotspot__btn {
+  background: color-mix(in srgb, var(--color-bg) 35%, transparent);
+  border-color: var(--color-accent);
+}
+.hotspot__badge {
+  position: absolute;
+  top: calc(var(--border-width) * -3);
+  left: calc(var(--border-width) * -3);
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Info panel: inverted colors so it stands out from the photo and the page */
+.hotspot__panel,
+.workspace__hint-container {
+  padding: var(--space);
+  border-left: calc(var(--border-width) * 2) solid var(--color-accent);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.hotspot__title { margin: 0 0 calc(var(--space) * 0.4); font-weight: 800; font-size: 1.25rem; }
+.hotspot__text { margin: 0; }
+
+.hotspot__panel {
+  position: absolute;
+  z-index: 2;
+  width: var(--panel-width);
+  max-width: 80vw;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.hotspot:hover .hotspot__panel,
+.hotspot:focus-within .hotspot__panel {
+  opacity: 1;
+  visibility: visible;
+  z-index: 3;
+}
+
+/* Hint: shown until a hotspot is active, hidden without JS */
+.workspace__hint-container {
+  position: absolute;
+  z-index: 1;
+  display: none;
+  margin: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.workspace__stage--ready .workspace__hint-container {
+  display: flex;
+  flex-direction: column;
+}
+.workspace__stage:has(.hotspot:hover, .hotspot:focus-within) .workspace__hint-container {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Desktop: panels float next to their hotspot */
+@media (min-width: 769px) {
+  .workspace__hint-container {
+    left: var(--space);
+    bottom: var(--space);
+    max-width: 24rem;
+  }
+
+  .hotspot__panel::before {
+    /* bridges the gap so the panel does not vanish while the mouse moves to it */
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: var(--panel-gap);
+  }
+
+  .hotspot[data-side="bottom"] .hotspot__panel { top: 100%; margin-top: var(--panel-gap); }
+  .hotspot[data-side="bottom"] .hotspot__panel::before { bottom: 100%; }
+  .hotspot[data-side="top"] .hotspot__panel { bottom: 100%; margin-bottom: var(--panel-gap); }
+  .hotspot[data-side="top"] .hotspot__panel::before { top: 100%; }
+
+  .hotspot[data-align="center"] .hotspot__panel {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .hotspot[data-align="start"] .hotspot__panel { left: 0; }
+  .hotspot[data-align="end"] .hotspot__panel { right: 0; }
+}
+
+/* Mobile: one fixed slot under the image, only one panel visible, no layout jumping */
+@media (max-width: 768px) {
+  .workspace {
+    padding: 0 0 var(--space-lg);
+  }
+  
+  .workspace__stage { margin-bottom: calc(var(--panel-height) + var(--space)); }
+
+  .workspace__overlay,
+  .hotspot { display: contents; }
+
+  .hotspot__btn {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
+    height: var(--h);
+  }
+
+  .hotspot__panel,
+  .workspace__hint-container {
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: auto;
+    max-width: none;
+    height: var(--panel-height);
+    margin: var(--space) 0 0;
+    overflow: auto;
+  }
+
+  .workspace__hint-container {
+    justify-content: center;
+  }
+
+  .hotspot__panel::before { display: none; }
+}
