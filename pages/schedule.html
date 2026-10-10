@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kedy ma zastihnete | Serhii Bihotskyi</title>
+  <meta name="description" content="Môj týždenný rozvrh na STU FEI: prednášky a cvičenia, aktuálna hodina a priebeh semestra.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kedy ma zastihnete | Serhii Bihotskyi">
+  <meta property="og:description" content="Môj týždenný rozvrh na STU FEI s aktuálnou hodinou a priebehom semestra.">
+  <meta property="og:image" content="../img/og-cover.png">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="../index.html">
+        <svg class="brand__logo" viewBox="0 0 64 64" width="56" height="56" role="img" aria-label="Monogram SB">
+          <rect class="brand__logo-bg" width="64" height="64" rx="14"/>
+          <text class="brand__logo-text" x="32" y="33" text-anchor="middle" dominant-baseline="central">SB</text>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__name">Serhii Bihotskyi</span>
+          <span class="brand__tagline">Softvérový inžinier a študent IT</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Hlavná navigácia">
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list">Menu</button>
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="../index.html">Profil</a></li>
+          <li><a class="nav__link" href="cv.html">Životopis</a></li>
+          <li><a class="nav__link" href="workspace.html">Moje pracovné prostredie</a></li>
+          <li><a class="nav__link nav__link--active" href="schedule.html" aria-current="page">Rozvrh</a></li>
+          <li><a class="nav__link" href="map.html">Kde ma nájdete</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <h1 class="hero__title">Kedy mám čas.</h1>
+      <p class="hero__lede">Počas semestra som na <mark class="hero__mark">škole v pondelok až štvrtok</mark>. Piatok mám voľný.</p>
+    </section>
+
+    <section class="schedule-section" aria-labelledby="schedule-title">
+      <h2 class="section-title" id="schedule-title">Môj rozvrh</h2>
+
+      <p class="schedule__status" id="schedule-status" role="status" aria-live="polite">Aktuálnu hodinu zobrazím, keď sa načíta JavaScript.</p>
+
+      <div class="schedule__filters" role="group" aria-label="Filter rozvrhu">
+        <button class="btn is-active" type="button" data-filter="all" aria-pressed="true">Všetko</button>
+        <button class="btn" type="button" data-filter="lecture" aria-pressed="false">Prednášky</button>
+        <button class="btn" type="button" data-filter="exercise" aria-pressed="false">Cvičenia</button>
+      </div>
+
+      <p class="schedule__empty" id="schedule-empty" hidden>Pre tento filter nemám v rozvrhu žiadne hodiny.</p>
+
+      <div class="schedule__scroll" id="schedule-scroll">
+        <table class="schedule" id="schedule-table" aria-label="Týždenný rozvrh">
+          <colgroup>
+            <col class="schedule__time-col">
+            <col><col><col><col><col><col><col><col><col><col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">Čas</th>
+              <th scope="col" colspan="2">Pondelok</th>
+              <th scope="col" colspan="2">Utorok</th>
+              <th scope="col" colspan="2">Streda</th>
+              <th scope="col" colspan="2">Štvrtok</th>
+              <th scope="col" colspan="2">Piatok</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">7:00</th>
+              <td class="schedule__free" rowspan="2" colspan="2"></td>
+              <td class="schedule__free" rowspan="1" colspan="2"></td>
+              <td class="schedule__free" rowspan="3" colspan="2"></td>
+              <td class="schedule__free" rowspan="3" colspan="2"></td>
+              <td class="schedule__free" rowspan="14" colspan="2"></td>
+            </tr>
+            <tr>
+              <th scope="row">8:00</th>
+              <td class="schedule__cell" rowspan="2" colspan="2" data-day="2" data-start="8" data-end="10" data-type="lecture"><strong>Analýza a zložitosť algoritmov</strong><span>Prednáška, 8:00 – 10:00</span></td>
+            </tr>
+            <tr>
+              <th scope="row">9:00</th>
+              <td class="schedule__cell" rowspan="2" colspan="2" data-day="1" data-start="9" data-end="11" data-type="lecture"><strong>Operačné systémy</strong><span>Prednáška, 9:00 – 11:00</span></td>
+            </tr>
+            <tr>
+              <th scope="row">10:00</th>
+              <td class="schedule__cell" rowspan="2" colspan="2" data-day="2" data-start="10" data-end="12" data-type="exercise"><strong>Webové technológie</strong><span>Cvičenie, 10:00 – 12:00</span></td>
+              <td class="schedule__cell" rowspan="2" data-day="3" data-start="10" data-end="12" data-type="exercise"><strong>Operačné systémy</strong><span>Cvičenie, 10:00 – 12:00</span></td>
+              <td class="schedule__cell" rowspan="2" data-day="3" data-start="10" data-end="12" data-type="exercise"><strong>Analýza a zložitosť algoritmov</strong><span>Cvičenie, 10:00 – 12:00</span></td>
+              <td class="schedule__cell" rowspan="1" colspan="2" data-day="4" data-start="10" data-end="11" data-type="exercise"><strong>Softvérové inžinierstvo</strong><span>Cvičenie, 10:00 – 11:00</span></td>
+            </tr>
+            <tr>
+              <th scope="row">11:00</th>
+              <td class="schedule__free" rowspan="2" colspan="2"></td>
+              <td class="schedule__free" rowspan="10" colspan="2"></td>
+            </tr>
+            <tr>
+              <th scope="row">12:00</th>
+              <td class="schedule__free" rowspan="3" colspan="2"></td>
+              <td class="schedule__free" rowspan="1" colspan="2"></td>
+            </tr>
+            <tr>
+              <th scope="row">13:00</th>
+              <td class="schedule__cell" rowspan="2" colspan="2" data-day="1" data-start="13" data-end="15" data-type="lecture"><strong>Webové technológie</strong><span>Prednáška, 13:00 – 15:00</span></td>
+              <td class="schedule__cell" rowspan="2" colspan="2" data-day="3" data-start="13" data-end="15" data-type="exercise"><strong>Webové technológie</strong><span>Cvičenie, 13:00 – 15:00</span></td>
+            </tr>
+            <tr>
+              <th scope="row">14:00</th>
+            </tr>
+            <tr>
+              <th scope="row">15:00</th>
+              <td class="schedule__free" rowspan="6" colspan="2"></td>
+              <td class="schedule__cell" rowspan="4" colspan="2" data-day="2" data-start="15" data-end="19" data-type="lecture"><strong>Softvérové inžinierstvo</strong><span>Prednáška, 15:00 – 19:00</span></td>
+              <td class="schedule__free" rowspan="6" colspan="2"></td>
+            </tr>
+            <tr><th scope="row">16:00</th></tr>
+            <tr><th scope="row">17:00</th></tr>
+            <tr><th scope="row">18:00</th></tr>
+            <tr>
+              <th scope="row">19:00</th>
+              <td class="schedule__free" rowspan="2" colspan="2"></td>
+            </tr>
+            <tr><th scope="row">20:00</th></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <address class="site-footer__contact">
+        <strong>Serhii Bihotskyi</strong><br>
+        Full-stack softvérový inžinier<br>
+        <a href="mailto:sbihotskyi@gmail.com">sbihotskyi@gmail.com</a><br>
+        <a href="tel:+421900123456">+421 900 123 456</a>
+      </address>
+      <p class="site-footer__sources">
+        &copy; 2026 Serhii Bihotskyi<br>
+        Zdroje:
+        <a href="https://github.com/Outfitio/Outfit-Fonts">písmo Outfit (SIL OFL 1.1)</a>,
+        <a href="https://www.openstreetmap.org/copyright">mapové podklady &copy; prispievatelia OpenStreetMap</a>,
+        <a href="https://leafletjs.com/">knižnica Leaflet</a>,
+        fotografia: vlastná
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

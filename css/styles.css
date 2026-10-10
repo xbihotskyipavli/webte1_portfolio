@@ -658,3 +658,108 @@ button:focus-visible {
     background: transparent
   }
 }
+
+
+/* ===== Schedule page ===== */
+.schedule-section { padding: 0 0 var(--space-lg); }
+.semester { padding: 0 0 var(--space-xl); }
+ 
+.schedule__status,
+.progress__label {
+  margin: 0 0 var(--space);
+}
+.schedule__status {
+  padding: var(--space);
+  border-left: calc(var(--border-width) * 2) solid var(--color-accent);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 1.125rem;
+}
+ 
+/* Filters need JS, so they are hidden without it */
+.schedule__filters { display: none; }
+.js .schedule__filters {
+  display: flex; flex-wrap: wrap;
+  gap: calc(var(--space) * 0.5);
+  margin-bottom: var(--space);
+}
+
+.schedule__empty {
+  padding: var(--space);
+  border: var(--border-width) dashed var(--color-text);
+}
+ 
+.schedule__scroll { overflow-x: auto; }
+.schedule {
+  width: 100%;
+  min-width: 760px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+}
+
+.schedule__time-col { width: 5rem; }
+.schedule th,
+.schedule td {
+  padding: calc(var(--space) * 0.5);
+  border: var(--border-thin) solid var(--color-grid-line);
+  vertical-align: top;
+}
+
+.schedule thead th {
+  background: var(--color-text); 
+  color: var(--color-bg); 
+  font-weight: 800;
+}
+
+.schedule tbody th {
+  text-align: right;
+  font-weight: 700;
+}
+
+.schedule tbody tr {
+  height: 3rem;
+}
+
+.schedule tbody tr:nth-of-type(even) th,
+.schedule tbody tr:nth-of-type(even) .schedule__free { background: var(--color-stripe); }
+
+.schedule__cell {
+  border: var(--border-width) solid var(--color-bg);
+  line-height: 1.25;
+}
+
+.schedule__cell strong, .schedule__cell span {
+  display: block;
+}
+
+.schedule__cell span {
+  font-weight: 300;
+  font-size: 0.875rem;
+}
+
+.schedule__cell[data-type="lecture"] {
+  background: var(--gradient-lecture);
+  color: var(--color-on-accent);
+}
+
+.schedule__cell[data-type="exercise"] {
+  background: var(--gradient-exercise);
+  color: var(--color-text);
+}
+ 
+/* Currently running lesson */
+.schedule__cell--now {
+  outline: calc(var(--border-width) * 2) solid var(--color-text);
+  outline-offset: calc(var(--border-width) * -2);
+}
+/* Hidden by filter but keeps its place so rowspans stay intact */
+.schedule .is-filtered-out { visibility: hidden; }
+ 
+@media (max-width: 768px) {
+  .cv { grid-template-columns: 1fr; }
+  .cv__side, .cv__main { padding: var(--space); }
+  .schedule { font-size: 0.875rem; }
+  .schedule__cell span { font-size: 0.75rem; }
+}

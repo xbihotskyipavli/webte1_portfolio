@@ -1,4 +1,7 @@
 // Shared script for all pages
+const SEMESTER_START = new Date(2026, 8, 21); // 21.09.2026
+const SEMESTER_END = new Date(2026, 11, 18, 23, 59, 59); // 18.12.2026
+
 
 // Marks the document so CSS can enable JS-only features
 document.documentElement.classList.add("js");
@@ -36,7 +39,7 @@ const WORKSPACE_HOTSPOTS = [
     id: "computer",
     label: "Môj počítač",
     title: "Môj počítač",
-    text: "Na tomto notebooku som počas 24 hodín písal serverovú časť a REST API našej aplikácie. Mal som tu otvorený editor, terminál aj dokumentáciu endpointov, teda presne to, čo robím pri vývoji bežne.",
+    text: "Na tomto notebooku som počas 48 hodín písal serverovú časť, REST API a napájal som platobnú bránu a e-mailovú službu.",
     x: 38, y: 62,
     side: "bottom", align: "center"
   },
@@ -44,7 +47,7 @@ const WORKSPACE_HOTSPOTS = [
     id: "zakhar",
     label: "Môj kamarát Zakhar",
     title: "Zakhar",
-    text: "Môj kamarát Zakhar. Navrhol dizajn webovej stránky: rozloženie, farby a prototyp obrazoviek, podľa ktorých sme potom písali kód.",
+    text: "Môj kamarát Zakhar. Navrhol dizajn webovej stránky nášho produktu ktorý sme vytvorili v rámci Hackathonu.",
     x: 88, y: 50,
     side: "bottom", align: "end"
   },
@@ -52,7 +55,7 @@ const WORKSPACE_HOTSPOTS = [
     id: "oleh",
     label: "Môj kamarát Oleh",
     title: "Oleh",
-    text: "Môj kamarát Oleh. Prepájal rozhranie s mojím API a testoval, či všetko funguje spolu. Vďaka nemu sme chyby našli skôr než porota.",
+    text: "Môj kamarát Oleh. Prepájal používateľské rozhranie s mojím API a písal testy.",
     x: 35, y: 24,
     side: "top", align: "center"
   },
@@ -123,3 +126,94 @@ function initWorkspaceHotspots() {
 }
 
 document.addEventListener("DOMContentLoaded", initWorkspaceHotspots);
+
+// ==== Schedule page ====
+
+const DAY_NAMES = ["Nedeľa", "Pondelok", "Utorok", "Streda", "Štvrtok", "Piatok", "Sobota"];
+const TYPE_NAMES = { lecture: "prednáška", exercise: "cvičenie" };
+const HOURS_PER_WEEK = 24 * 7;
+ 
+function formatHour(hour) {
+  return hour + ":00";
+}
+ 
+function initSchedule() {
+  const table = document.getElementById("schedule-table");
+  if (!table) return;
+ 
+  const status = document.getElementById("schedule-status");
+  const emptyMessage = document.getElementById("schedule-empty");
+  const scrollBox = document.getElementById("schedule-scroll");
+  const filterButtons = document.querySelectorAll("[data-filter]");
+ 
+  const lessons = Array.from(table.querySelectorAll(".schedule__cell")).map((cell) => ({
+    cell: cell,
+    name: cell.querySelector("strong").textContent,
+    day: Number(cell.dataset.day),
+    start: Number(cell.dataset.start),
+    end: Number(cell.dataset.end),
+    type: cell.dataset.type,
+  }));
+ 
+  // Hours until the lesson starts next time (wraps to next week)
+  function getHoursUntil(lesson, currentDay, currentHour) {
+    let diff = ((lesson.day - currentDay + 7) % 7) * 24 + lesson.start - currentHour;
+    if (diff <= 0) diff += HOURS_PER_WEEK;
+    return diff;
+  }
+ 
+  function updateCurrentLesson() {
+    const now = new Date();
+    const currentDay = now.getDay();
+    const currentHour = now.getHours() + now.getMinutes() / 60;
+ 
+    lessons.forEach((lesson) => lesson.cell.classList.remove("schedule__cell--now"));
+ 
+    const running = lessons.filter(
+      (lesson) => lesson.day === currentDay && currentHour >= lesson.start && currentHour < lesson.end
+    );
+ 
+    if (running.length > 0) {
+      running.forEach((lesson) => lesson.cell.classList.add("schedule__cell--now"));
+      const text = running
+        .map((lesson) => lesson.name + " (" + TYPE_NAMES[lesson.type] + ", do " + formatHour(lesson.end) + ")")
+        .join(" a ");
+      status.textContent = "Práve prebieha: " + text + ".";
+      return;
+    }
+ 
+    const next = lessons
+      .slice()
+      .sort((a, b) => getHoursUntil(a, currentDay, currentHour) - getHoursUntil(b, currentDay, currentHour))[0];
+    const isToday = next.day === currentDay && getHoursUntil(next, currentDay, currentHour) < 24;
+    const when = isToday ? "dnes" : DAY_NAMES[next.day];
+    status.textContent =
+      "Práve neprebieha žiadna výučba. Najbližšia hodina: " +
+      when + " o " + formatHour(next.start) + ", " + next.name + " (" + TYPE_NAMES[next.type] + ").";
+  }
+ 
+  function applyFilter(type) {
+    let visibleCount = 0;
+    lessons.forEach((lesson) => {
+      const show = type === "all" || lesson.type === type;
+      lesson.cell.classList.toggle("is-filtered-out", !show);
+      if (show) visibleCount++;
+    });
+    filterButtons.forEach((button) => {
+      const isActive = button.dataset.filter === type;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+    emptyMessage.hidden = visibleCount > 0;
+    scrollBox.hidden = visibleCount === 0;
+  }
+ 
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => applyFilter(button.dataset.filter));
+  });
+ 
+  updateCurrentLesson();
+  setInterval(updateCurrentLesson, 60000);
+}
+
+initSchedule();
