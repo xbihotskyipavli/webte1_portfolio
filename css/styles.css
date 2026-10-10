@@ -66,19 +66,36 @@
 
 /* Design tokens: every color, radius and spacing value lives here */
 :root {
+  /* Colors */
   --color-brand-yellow: #ffd60a;
   --color-brand-black: #121212;
-  --color-accent: #c0300e;
+  --color-stripe: color-mix(in srgb, var(--color-text) 8%, transparent);
+  --color-grid-line: color-mix(in srgb, var(--color-text) 35%, transparent);
+  --color-dark-tint: color-mix(in srgb, var(--color-text) 10%, var(--color-bg));
+  --color-mild-tint: color-mix(in srgb, var(--color-on-accent) 15%, var(--color-bg));
+  --color-bright-tint: color-mix(in srgb, var(--color-on-accent) 30%, var(--color-bg));
+  --color-accent: #003440;
   --color-on-accent: #ffffff;
+  --color-snow: #fcfbf7;
   --color-bg: var(--color-brand-yellow);
   --color-text: var(--color-brand-black);
-  --radius: 999px;
+  
+  --gradient-lecture: linear-gradient(135deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 60%, var(--color-brand-black)));
+  --gradient-exercise: linear-gradient(45deg, var(--color-snow), color-mix(in srgb, var(--color-snow) 85%, var(--color-brand-yellow)));
+  
+  /* Spacing */
   --space: 1rem;
   --space-lg: calc(var(--space) * 3);
   --space-xl: calc(var(--space) * 6);
-  --border-width: 3px;
-  --font-main: "Outfit", Arial, sans-serif;
   --container-max: 1600px;
+  
+  /* Borders */
+  --border-width: 3px;
+  --border-thin: calc(var(--border-width) / 3);
+  --radius: 999px;
+  
+  /* Fonts */
+  --font-main: "Outfit", Arial, sans-serif;
 }
 
 *,
@@ -485,7 +502,6 @@ button:focus-visible {
   .hotspot[data-align="end"] .hotspot__panel { right: 0; }
 }
 
-/* Mobile: one fixed slot under the image, only one panel visible, no layout jumping */
 @media (max-width: 768px) {
   .workspace {
     padding: 0 0 var(--space-lg);
@@ -521,4 +537,124 @@ button:focus-visible {
   }
 
   .hotspot__panel::before { display: none; }
+}
+
+/* ==== CV ==== */
+.cv {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) 2.2fr;
+  margin-bottom: var(--space-xl);
+}
+ 
+/* Each column fades into the page background toward the middle, no hard edges */
+.cv__side {
+  padding: var(--space-lg);
+  background: linear-gradient(90deg, var(--color-dark-tint), var(--color-bg));
+}
+
+.cv__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background: linear-gradient(90deg, var(--color-bg), var(--color-bright-tint));
+}
+ 
+.cv__photo {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  margin: 0 0 var(--space-lg);
+  border-radius: calc(var(--space) * 0.5);
+}
+
+.cv .section-title {
+  margin: 0 0 var(--space);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+}
+
+.cv__contact {
+  font-style: normal; font-size: 1.125rem;
+}
+
+.cv__entry-title {
+  margin: 0 0 calc(var(--space) * 0.4); font-weight: 700; font-size: 1.25rem;
+}
+
+.cv__entry p {
+  margin: 0;
+}
+
+.cv__projects {
+  display: grid; gap: var(--space); margin: 0; padding: 0; list-style: none;
+}
+
+ 
+.cv__tag {
+  display: inline-block;
+  margin-left: calc(var(--space) * 0.5);
+  padding: 0 calc(var(--space) * 0.6);
+  border-radius: var(--radius);
+  background: var(--color-stripe);
+  font-weight: 400;
+  font-size: 0.875rem;
+  vertical-align: middle;
+}
+ 
+/* Skill groups */
+.cv__group {
+  margin-top: var(--space);
+}
+
+.cv__group-title {
+  margin: 0 0 calc(var(--space) * 0.6);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space) * 0.5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: calc(var(--space) * 0.2) var(--space);
+  border-radius: var(--radius);
+  background: var(--color-stripe);
+  font-size: 1.125rem;
+}
+
+.cv__lines {
+  margin: 0; padding: 0; list-style: none;
+}
+
+.cv__lines li {
+  padding: calc(var(--space) * 0.2) 0;
+}
+
+.cv__note {
+  margin-left: calc(var(--space) * 0.5); font-weight: 300; font-size: 1rem;
+}
+
+ 
+@media (max-width: 768px) {
+  .cv { grid-template-columns: 1fr; }
+  .cv__side, .cv__main { padding: var(--space); }
+  .cv {
+    background: linear-gradient(90deg, var(--color-mild-tint), var(--color-bright-tint));;
+  }
+  .cv__side {
+    background: transparent
+  }
+  .cv__main {
+    background: transparent
+  }
 }
