@@ -1,0 +1,124 @@
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+  }
+
+  html,
+  body {
+    margin: 0;
+    font-size: 10pt;
+    line-height: 1.35;
+  }
+
+  .site-header,
+  .site-footer,
+  .hero,
+  button {
+    display: none !important;
+  }
+
+  .container {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  /* !important keeps two columns; the 768px mobile rule in styles.css would otherwise match A4 width */
+  .cv {
+    grid-template-columns: 52mm 1fr !important;
+    margin: 0;
+  }
+
+  .cv__side {
+    padding: 0 5mm 0 0;
+    border-right: 0.5pt solid #000;
+  }
+
+  .cv__main {
+    gap: 4mm;
+    padding: 0 0 0 6mm;
+  }
+
+  .cv__photo {
+    width: 35mm;
+    margin: 0 0 4mm;
+    border-radius: 0;
+  }
+
+  .cv .section-title {
+    margin: 0 0 2mm;
+    padding-bottom: 1mm;
+    border-bottom: 0.5pt solid #000;
+    font-size: 13pt;
+  }
+
+  .cv__contact,
+  .cv__note,
+  .chip,
+  .cv__tag {
+    font-size: 9pt;
+  }
+
+  .cv__entry-title {
+    margin-bottom: 1mm;
+    font-size: 11pt;
+  }
+
+  .cv__block p {
+    margin: 0 0 1.5mm;
+  }
+
+  .cv__group {
+    margin-top: 2mm;
+  }
+
+  .cv__group-title {
+    margin-bottom: 1mm;
+    font-size: 8.5pt;
+  }
+
+  .cv__lines li {
+    padding: 0.3mm 0;
+  }
+
+  .cv__projects {
+    gap: 2mm;
+  }
+
+  .chips {
+    gap: 1.5mm;
+  }
+
+  /* Pills have no background in print, so outline them instead */
+  .chip,
+  .cv__tag {
+    padding: 0 2mm;
+    border: 0.5pt solid #000;
+    border-radius: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Print the URL, since links aren't clickable on paper */
+  .cv__entry a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8pt;
+    word-break: break-all;
+  }
+
+  .cv__block,
+  .cv__entry,
+  .cv__group {
+    break-inside: avoid;
+  }
+}
