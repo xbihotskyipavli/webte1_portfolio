@@ -10,6 +10,10 @@ Osobná online visitka. Obsahuje stránky: Profil, Životopis, Moje pracovné pr
 
 Nestihol som urobiť stránku:  `Kde ma nájdete`
 
+## Odkaz na stránku
+
+https://webte1.fei.stuba.sk/~xbihotskyipavli/index.html
+
 ## Zdroje
 
 - Písmo: Outfit, licencia SIL Open Font License 1.1, https://github.com/Outfitio/Outfit-Fonts
