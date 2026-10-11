@@ -1,20 +1,20 @@
 # Moja online vizitka
 
-**Serhii Bihotskyi**, WEBTE1, ZS 2026/2027, krúžok: _doplniť_
-
-Odkaz na stránku na školskom serveri: _doplniť_
+**Serhii Bihotskyi**, WEBTE1, krúžok: pondelok 13:00. 
 
 ## O webe
 
-Osobná vizitka s piatimi podstránkami (profil, životopis, záľuby, rozvrh, mapa). Je napísaná v čistom HTML5, CSS a JavaScripte bez frameworkov. Zatiaľ je hotová podstránka Profil (`index.html`).
+Osobná online visitka. Obsahuje stránky: Profil, Životopis, Moje pracovné prostredie, Rozvrh. Je napísaná v čistom HTML5, CSS a JavaScripte bez frameworkov.
+
+## Čo nie je urobené
+
+Nestihol som urobiť stránku:  `Kde ma nájdete`
 
 ## Zdroje
 
 - Písmo: Outfit, licencia SIL Open Font License 1.1, https://github.com/Outfitio/Outfit-Fonts
-- Fotografia: vlastná (zatiaľ zástupný obrázok `img/me.jpg`)
-- Mapové podklady: prispievatelia OpenStreetMap, https://www.openstreetmap.org/copyright
-- Knižnica Leaflet (len na `map.html`): https://leafletjs.com/
+- Fotografia: vlastná (`img/me.jpg`)
 
 ## Použitie AI
 
-Pri tvorbe návrhu a kódu stránky Profil som použil nástroj Claude (Anthropic); výsledok som skontroloval a rozumiem mu.
+Použil som Cluade na vygenerovanie šanblón stranok, štýlov a niektorých JS funkcií, ktoré som upravil pod požiadavky zadania, prídal som accessibility tags, skontroloval responzivitu. Vygenerovaným snippetom kódu úplne rozumiem a viem ich vysvetliť.
